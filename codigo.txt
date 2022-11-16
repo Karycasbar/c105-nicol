@@ -14,14 +14,18 @@ print(width)
 fps = int(vid.get(cv2.CAP_PROP_FPS))
 print(fps)
 
+out = cv2.VideoWriter('Boxing.mp4',cv2.VideoWriter_fourcc(*'DIVX'),30,(width,height))
+
 while(True):
     #Captura el video cuadro a cuadro
     ret, frame =  vid.read()
     cv2.imshow("Camara web", frame)
-    if cv2.waitKey(1) == 32:
+    out.write(frame)
+    if cv2.waitKey(25) == 32:
         break
 #Libera al objeto capturado por video
 vid.release()
+out.release()
 
 #Cierra todos los fotogramas
 cv2.destroyAllWindows()
